@@ -1,12 +1,13 @@
 # virtualenv julia-set
+import math
 import random
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
-im_width, im_height = 1250, 750
-nit_max = 1000
-c = complex(-0.8, 0.156)
+im_width, im_height = 2000, 1250
+nit_max = 2000
+c = complex(-0.9, 0.265)
 zabs_max = 10
 xmin, xmax = -1.7, 1.7
 xwidth = xmax - xmin
@@ -32,11 +33,9 @@ for ix in range(im_width):
 		while abs(z) <= zabs_max and nit < nit_max:
 			z = z**2 + c
 			nit += 1
-		shade = 1 - np.sqrt(1 - nit / nit_max)
-		ratio = nit / nit_max
-		diff = nit_max - nit
-		ratio *= 255
-		julia[iy][ix] = np.array([ratio, ratio, ratio])
+		# shade = 1 - nit / nit_max
+		shade = (nit / nit_max) * 255
+		julia[iy][ix] = np.array([shade/4, shade/2, shade*1.0])
 		# if diff < 200 and diff > 1:
 		# 	julia[ix, iy] = 1
 		# else:
