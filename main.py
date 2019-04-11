@@ -1,19 +1,27 @@
 # virtualenv julia-set
+import random
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
-im_width, im_height = 500, 500
-nit_max = 500
-c = complex(-0.1, 0.65)
+im_width, im_height = 1250, 750
+nit_max = 1000
+c = complex(-0.8, 0.156)
 zabs_max = 10
-xmin, xmax = -1.5, 1.5
+xmin, xmax = -1.7, 1.7
 xwidth = xmax - xmin
-ymin, ymax = -1.5, 1.5
+ymin, ymax = -1, 1
 yheight = ymax - ymin
 
-julia = np.zeros((im_width, im_height))
+# julia = np.zeros()
+# julia = np.zeros((im_height, im_width), dtype=np.dtype())
+def make_row():
+	return np.zeros((im_width, 3))
+julia = np.array([make_row() for i in range(0, im_height)])
 
+print('beginning iteration...')
+print('z = z^2 + c')
+print('c = %si + %sj' % (c.imag, c.real))
 for ix in range(im_width):
 	for iy in range(im_height):
 		nit = 0
@@ -24,16 +32,19 @@ for ix in range(im_width):
 		while abs(z) <= zabs_max and nit < nit_max:
 			z = z**2 + c
 			nit += 1
-		shade = 1 - np.sqrt(nit / nit_max)
+		shade = 1 - np.sqrt(1 - nit / nit_max)
 		ratio = nit / nit_max
 		diff = nit_max - nit
-		if diff < 50 and diff > 1:
-			julia[ix, iy] = 0
-		else:
-			julia[ix, iy] = 1 - diff / nit_max
+		ratio *= 255
+		julia[iy][ix] = np.array([shade, shade, shade])
+		# if diff < 200 and diff > 1:
+		# 	julia[ix, iy] = 1
+		# else:
+		# 	julia[ix, iy] = 1 - diff / nit_max
 
+print('making image & plot...')
 fig, ax = plt.subplots()
-ax.imshow(julia, interpolation='nearest', cmap=cm.hot)
+ax.imshow(julia, interpolation='none')
 
 # labels
 xtick_labels = np.linspace(xmin, xmax, xwidth / 0.5)
@@ -43,4 +54,6 @@ ytick_labels = np.linspace(ymin, ymax, yheight / 0.5)
 ax.set_yticks([(y-ymin) / yheight * im_height for y in ytick_labels])
 ax.set_yticklabels(['{:.1f}'.format(ytick) for ytick in ytick_labels])
 
+print('writing fractal...')
+plt.savefig('D:\\media\\fractals\\exploring julia set\\Fishing_for_fractals_%s' % random.randint(0,1000))
 plt.show()
