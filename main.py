@@ -33,8 +33,9 @@ for ix in range(im_width):
 		while abs(z) <= zabs_max and nit < nit_max:
 			z = z**2 + c
 			nit += 1
-		shade = nit / nit_max
-		julia[iy][ix] = np.array([shade*10, shade*30, shade*70])
+		# shade = nit / nit_max
+		shade = z / zabs_max
+		julia[iy][ix] = np.array([shade*50, shade*15, shade*2])
 
 print('making image & plot...')
 fig, ax = plt.subplots()
@@ -49,5 +50,5 @@ ax.set_yticks([(y-ymin) / yheight * im_height for y in ytick_labels])
 ax.set_yticklabels(['{:.1f}'.format(ytick) for ytick in ytick_labels])
 
 print('writing fractal...')
-plt.savefig('D:\\media\\fractals\\exploring julia set\\Baby_dragon_Bird_%s' % random.randint(0,1000))
+plt.savefig('D:\\media\\fractals\\exploring julia set\\Radioactive_racoon_%s' % random.randint(0,1000))
 plt.show()
