@@ -33,8 +33,8 @@ for ix in range(im_width):
 		while abs(z) <= zabs_max and nit < nit_max:
 			z = z**2 + c
 			nit += 1
-		shade = nit / nit_max
-		julia[iy][ix] = np.array([shade*10, shade*10, shade*100])
+		shade = 1 - nit / nit_max
+		julia[iy][ix] = np.array([shade/2, shade/2, shade/2])
 		# if diff < 200 and diff > 1:
 		# 	julia[ix, iy] = 1
 		# else:
