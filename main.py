@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
 im_width, im_height = 1500, 1500
-nit_max = 350
-c = complex(-0.9, 0.265)
+nit_max = 400
+c = complex(-0.8, 0.165)
 zabs_max = 20
 xmin, xmax = -2.3, 2.3
 xwidth = xmax - xmin
@@ -33,9 +33,10 @@ for ix in range(im_width):
 		while abs(z) <= zabs_max and nit < nit_max:
 			z = z**2 + c
 			nit += 1
-		# shade = nit / nit_max
-		shade = z / zabs_max
-		julia[iy][ix] = np.array([shade*50, shade*15, shade*2])
+		shade = nit / nit_max
+		zshade = (z / zabs_max).imag
+
+		julia[iy][ix] = np.array([zshade, shade*5, shade*20])
 
 print('making image & plot...')
 fig, ax = plt.subplots()
