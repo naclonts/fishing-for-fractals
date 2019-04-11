@@ -5,13 +5,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
-im_width, im_height = 2000, 1250
-nit_max = 200
+im_width, im_height = 1500, 1500
+nit_max = 350
 c = complex(-0.9, 0.265)
 zabs_max = 20
-xmin, xmax = -1.7, 1.7
+xmin, xmax = -2.3, 2.3
 xwidth = xmax - xmin
-ymin, ymax = -1, 1
+ymin, ymax = -2.0, 2.0
 yheight = ymax - ymin
 
 # julia = np.zeros()
@@ -34,11 +34,7 @@ for ix in range(im_width):
 			z = z**2 + c
 			nit += 1
 		shade = nit / nit_max
-		julia[iy][ix] = np.array([shade*10, shade*10, shade*100])
-		# if diff < 200 and diff > 1:
-		# 	julia[ix, iy] = 1
-		# else:
-		# 	julia[ix, iy] = 1 - diff / nit_max
+		julia[iy][ix] = np.array([shade*10, shade*30, shade*70])
 
 print('making image & plot...')
 fig, ax = plt.subplots()
@@ -53,5 +49,5 @@ ax.set_yticks([(y-ymin) / yheight * im_height for y in ytick_labels])
 ax.set_yticklabels(['{:.1f}'.format(ytick) for ytick in ytick_labels])
 
 print('writing fractal...')
-plt.savefig('D:\\media\\fractals\\exploring julia set\\Baby_dragon_%s' % random.randint(0,1000))
+plt.savefig('D:\\media\\fractals\\exploring julia set\\Baby_dragon_Bird_%s' % random.randint(0,1000))
 plt.show()
