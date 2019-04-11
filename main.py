@@ -36,7 +36,7 @@ for ix in range(im_width):
 		ratio = nit / nit_max
 		diff = nit_max - nit
 		ratio *= 255
-		julia[iy][ix] = np.array([shade, shade, shade])
+		julia[iy][ix] = np.array([ratio, ratio, ratio])
 		# if diff < 200 and diff > 1:
 		# 	julia[ix, iy] = 1
 		# else:
