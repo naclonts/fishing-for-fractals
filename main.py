@@ -33,10 +33,11 @@ for ix in range(im_width):
 		while abs(z) <= zabs_max and nit < nit_max:
 			z = z**2 + c
 			nit += 1
+
 		shade = nit / nit_max
 		zshade = (z / zabs_max).imag
 
-		julia[iy][ix] = np.array([zshade, shade*5, shade*20])
+		julia[iy][ix] = np.array([shade, shade*10, shade*5])
 
 print('making image & plot...')
 fig, ax = plt.subplots()
