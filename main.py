@@ -6,12 +6,12 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
 im_width, im_height = 1500, 1500
-nit_max = 400
-c = complex(-0.8, 0.165)
-zabs_max = 20
-xmin, xmax = -2.3, 2.3
+nit_max = 300
+c = complex(-1.1, 0.185)
+zabs_max = 200
+xmin, xmax = -1.9, 1.9
 xwidth = xmax - xmin
-ymin, ymax = -2.0, 2.0
+ymin, ymax = -1.2, 1.2
 yheight = ymax - ymin
 
 # julia = np.zeros()
@@ -37,7 +37,7 @@ for ix in range(im_width):
 		shade = nit / nit_max
 		zshade = (z / zabs_max).imag
 
-		julia[iy][ix] = np.array([shade, shade*10, shade*5])
+		julia[iy][ix] = np.array([shade, shade*10, shade*10])
 
 print('making image & plot...')
 fig, ax = plt.subplots()
@@ -52,5 +52,7 @@ ax.set_yticks([(y-ymin) / yheight * im_height for y in ytick_labels])
 ax.set_yticklabels(['{:.1f}'.format(ytick) for ytick in ytick_labels])
 
 print('writing fractal...')
-plt.savefig('D:\\media\\fractals\\exploring julia set\\Radioactive_racoon_%s' % random.randint(0,1000))
+plt.savefig('D:\\media\\fractals\\exploring julia set\\Green_jello_salad_%s_%si_%sj.png' % (
+	random.randint(0,10000), c.imag, c.real,
+))
 plt.show()
