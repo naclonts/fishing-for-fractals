@@ -5,10 +5,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
+# Constants affecting fractal output
 im_width, im_height = 1500, 1500
-nit_max = 300
+nit_max = 150
 c = complex(-1.1, 0.185)
-zabs_max = 200
+zabs_max = 150
 xmin, xmax = -1.9, 1.9
 xwidth = xmax - xmin
 ymin, ymax = -1.2, 1.2
@@ -20,9 +21,10 @@ def make_row():
 	return np.zeros((im_width, 3))
 julia = np.array([make_row() for i in range(0, im_height)])
 
-print('beginning iteration...')
+print('\n -- Beginning iteration... \n')
 print('z = z^2 + c')
-print('c = %si + %sj' % (c.imag, c.real))
+print('c = %si + %sj\n' % (c.imag, c.real))
+
 for ix in range(im_width):
 	for iy in range(im_height):
 		nit = 0
@@ -37,7 +39,7 @@ for ix in range(im_width):
 		shade = nit / nit_max
 		zshade = (z / zabs_max).imag
 
-		julia[iy][ix] = np.array([shade, shade*10, shade*10])
+		julia[iy][ix] = np.array([zshade*1, zshade*10, zshade*10])
 
 print('making image & plot...')
 fig, ax = plt.subplots()
@@ -52,7 +54,7 @@ ax.set_yticks([(y-ymin) / yheight * im_height for y in ytick_labels])
 ax.set_yticklabels(['{:.1f}'.format(ytick) for ytick in ytick_labels])
 
 print('writing fractal...')
-plt.savefig('D:\\media\\fractals\\exploring julia set\\Green_jello_salad_%s_%si_%sj.png' % (
+plt.savefig('Green_jello_salad_%s_%si_%sj.png' % (
 	random.randint(0,10000), c.imag, c.real,
 ))
 plt.show()
