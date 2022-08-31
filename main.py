@@ -22,8 +22,11 @@ ymin, ymax = -1.2, 1.2
 yheight = ymax - ymin
 
 # Color
-shade_multiplier = 0.1
-zshade_multiplier = 0.01
+shade_multiplier = 5
+zshade_multiplier = 0.0001
+r_mult = 0.6
+g_mult = 0.6
+b_mult = 1
 
 # Percentage progress indicator
 progress_indicator_modulus = im_width / 10
